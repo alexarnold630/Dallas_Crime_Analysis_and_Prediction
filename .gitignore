@@ -127,3 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+# large files
+clean_data.csv
+dallas_crime_incidents_2020.csv
