@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Dallas Crime</title>
+
+    <!-- Bootstrap and Bootswatch CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <!--<link rel="stylesheet" href="assets/css/d3Style.css">-->
+
+   <!-- <link rel="stylesheet"  href="style.css">-->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script> -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://unpkg.com/d3-v6-tip@1.0.6/build/d3-v6-tip.js"></script>
+    <script src="https://unpkg.com/jeezy@1.13.1/lib/jeezy.min.js"></script>
+    <!--<script type="text/javascript" src="static/js/app.js"></script>-->
+</head>
+
+<body>
+
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">
+            <img src="../static/images/dallas_logo.jpeg" alt="logo" style="width:40px;height:40px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Visualizations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/ml">Status Predictor</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/exploration">Crime Analysis</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/data">Data</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/resources">Resources</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!--JUMBOTRON-->
+    <!--<div class="jumbotron text-center">
+        <h3 class="display-3">Dallas Crime</h3>
+    </div>-->
+
+    <div class= "container-fluid">
+        <div class="row text-center" style="margin-top:2%">
+            <div class = "col-md-12">
+                <h4 class="display-4">Dallas Crime</h4>
+            </div>
+        </div>
+    </div>      
+
+    <div class= "container-fluid">
+        <div class="row" style="margin-top:2%">
+            <div class = "col-md-12">
+                <p style="text-align:center;">
+                    <img src="../static/images/skyline.png" alt="logo" style="width:50%">
+                    <!--<h3 class ="display-3 text-center">Dallas Crime</h3>-->
+                </p>
+            </div>
+        </div>
+        <div class="row" style="margin-top:2%">
+            <div class = "col-sm-2"></div>
+            <div class = "col-md-8">
+                <blockquote class="blockquote" style="text-align:center;">
+                    <p class="mb-0">For our project, we investigated Dallas Crime to determine whether or not we could predict the status or outcome of an incident.  
+                        The status being either "Clear by Arrest," "Closed/Cleared," or "Suspended."  We created a two -step prediction model using Machine Learning 
+                        Classification techniques of XG Boost Classifiers for each of our models.  Model 1 determines the probability that an incident results in
+                        being suspended.  From those incidents that are not suspended, Model 2 determines the probability of whether that incident resulted in being
+                        clear by arrest or closed.
+                        <br>
+                        <br>
+                        We've created <a href="/dashboard"><b> visualizations</b></a> of our dataset that allows for greater exploration of crime incident time and location data.  We've also included the data tables
+                        we used for our prediction model and visualizations with interactive features on our <a href="/data"><b> Data</b></a> page.
+                        <br>
+                        <br>
+                        Our <a href="/ml"><b> Machine Learning Page </b></a> allows you to predict the incident status of a crime by selecting correlating features.  Our
+                        <a href="/exploration"><b> Machine Learning Exploration Page</b></a> provides greater detail and insight into the process we took of importing, 
+                        cleaning, and feature engineering our data set in order to create our two-step Machine Learning Model using XG-Boost Classifiers.
+                         </p>
+                  </blockquote>
+                  <br>
+            </div>
+            <div class = "col-sm-2"></div>
+        </div>
+        <div class="row" style="margin-top:2%; text-align: center;">
+            <div class = "col-sm-2"></div>
+            <div class = "col-md-8">
+                <h3><b>When and where do you think crime takes place?</b></h3>
+                <h6><b>Click on the visualizations below to find out.</b></h6>
+            </div>
+            <div class = "col-sm-2"></div>
+        </div>
+        <div class="row" style="margin-top:2%">
+            <div class = "col-sm-2"></div>
+            <div class = "col-sm-4">
+                <img src="../static/images/time_dashboard.png" alt="time" style="width:65%;padding:2%;" class="center">
+            </div>
+            <div class = "col-sm-4">
+                <img src="../static/images/location_dashboard.png" alt="location" style="width:65%;padding:2%;" class="center">
+            </div>
+            <div class = "col-sm-2"></div>  
+        </div>
+    </div>
+</body>
+
+</html>

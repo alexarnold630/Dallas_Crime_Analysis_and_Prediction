@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Data</title>
+
+    <!-- Bootstrap and Bootswatch CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <!--<link rel="stylesheet" href="assets/css/d3Style.css">-->
+
+   <!-- <link rel="stylesheet"  href="style.css">-->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script> -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://unpkg.com/d3-v6-tip@1.0.6/build/d3-v6-tip.js"></script>
+    <script type="text/javascript" src="/static/js/app3.js"></script>
+
+    <!--FROM SAM-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.bootstrap4.min.css">
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <!-- Buttons -->
+    <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+  
+</head>
+
+<body>
+
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">
+            <img src="../static/images/dallas_logo.jpeg" alt="logo" style="width:40px;height:40px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Visualizations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/ml">Status Predictor</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/exploration">Crime Analysis</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/data">Data</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/resources">Resources</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+
+    <!--JUMBOTRON-->
+    <div class="jumbotron text-center">
+        <h3 class="display-3">Dallas Crime Data for 2020</h3>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row margin-top-50">
+            <div class="col-md-3">
+             <!--FILTERS-->
+                <div class="card border-primary mb-3">
+                    <div class="card-header">Filters</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="nibrs_crime_category">Crime Category</label>
+                                    <select id="crime_category">
+                                        <option value="" disabled selected>Select Crime</option>
+                                        <option value="ALL OTHER OFFENSES">All Other Offenses</option>
+                                        <option value="ASSAULT OFFENSES">Assault Offenses</option>
+                                        <option value="BURGLARY/ BREAKING & ENTERING">Burglary/ Breaking & Entering</option>
+                                        <option value="DESTRUCTION/ DAMAGE/ VANDALISM OF PROPERTY">Dustruction/ Damage/ Vandalism of Property</option>
+                                        <option value="DRUG/ NARCOTIC VIOLATIONS">Drug/ Narcotic Violations</option>
+                                        <option value="LARCENY/ THEFT OFFENSES">Larceny/ Theft Offenses</option>
+                                        <option value="MISCELLANEOUS">Miscellaneous</option>
+                                        <option value="MOTOR VEHICLE THEFT">Motor Vehicle Theft</option>
+                                        <option value="PUBLIC INTOXICATION">Public Intoxication</option>
+                                        <option value="ROBBERY">Robbery</option>
+                                        <option value="TRAFFIC VIOLATION - HAZARDOUS">Traffic Violation- Hazardous</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="division">Division</label>
+                                    <select id="division">
+                                        <option value="" disabled selected>Select Divison</option>
+                                        <option value="Central">Central</option>
+                                        <option value="NorthCentral">North Central</option>
+                                        <option value="SouthCentral">South Central</option>
+                                        <option value="NorthEast">North East</option>
+                                        <option value="NorthWest">North West</option>
+                                        <option value="SouthEast">South East</option>
+                                        <option value="SouthWest">South West</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="district">District</label>
+                                    <select id="district">
+                                        <option value="" disabled selected>Select District</option>
+                                        <option value="D1">D1</option>
+                                        <option value="D2">D2</option>
+                                        <option value="D3">D3</option>
+                                        <option value="D4">D4</option>
+                                        <option value="D5">D5</option>
+                                        <option value="D6">D6</option>
+                                        <option value="D7">D7</option>
+                                        <option value="D8">D8</option>
+                                        <option value="D9">D9</option>
+                                        <option value="D10">D10</option>
+                                        <option value="D11">D11</option>
+                                        <option value="D12">D12</option>
+                                        <option value="D13">D13</option>
+                                        <option value="D14">D14</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="day1">Day</label>
+                                    <select id="day">
+                                        <option value="" disabled selected>Select</option>
+                                        <option value="Mon">Monday</option>
+                                        <option value="Tue">Tuesday</option>
+                                        <option value="Wed">Wednesday</option>
+                                        <option value="Thu">Thursday</option>
+                                        <option value="Fri">Friday</option>
+                                        <option value="Sat">Saturday</option>
+                                        <option value="Sun">Sunday</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="hour">Hour</label>
+                                    <select id="hour">
+                                        <option value="" disabled selected>Select</option>
+                                        <option value="1">1 am</option>
+                                        <option value="2">2 am</option>
+                                        <option value="3">3 am</option>
+                                        <option value="4">4 am</option>
+                                        <option value="5">5 am</option>
+                                        <option value="6">6 am</option>
+                                        <option value="7">7 am</option>
+                                        <option value="8">8 am</option>
+                                        <option value="9">9 am</option>
+                                        <option value="10">10 am</option>
+                                        <option value="11">11 am</option>
+                                        <option value="12">Noon</option>
+                                        <option value="13">1 pm</option>
+                                        <option value="14">2 pm</option>
+                                        <option value="15">3 pm</option>
+                                        <option value="16">4 pm</option>
+                                        <option value="17">5 pm</option>
+                                        <option value="18">6 pm</option>
+                                        <option value="19">7 pm</option>
+                                        <option value="20">8 pm</option>
+                                        <option value="21">9 pm</option>
+                                        <option value="22">10 pm</option>
+                                        <option value="23">11 pm</option>
+                                        <option value="24">Midnight</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="watch">Watch</label>
+                                    <select id="watch">
+                                        <option value="" disabled selected>Select</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-group-sm">
+                            <button id="filter-btn" type="button" class="btn btn-primary">Filter Table</button>
+                            <button id="filter-clear" type="button" class="btn btn-success">Clear Filters</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--DATA TABLE--> 
+            <div class="col-md-9">
+                <div id="table-area" class="">
+                    <table id="table" class="table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th class="table-head">Watch</th>
+                                <th class="table-head">Division</th>
+                                <th class="table-head">District</th>
+                                <th class="table-head">Month</th>
+                                <th class="table-head">Day</th>
+                                <th class="table-head">Status</th>
+                                <th class="table-head">Crime Category</th>
+                                <th class="table-head">Hour</th>
+                                <th class="table-head">Latitude</th>
+                                <th class="table-head">Longitude</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+      </div>
+  </div>
+</body>
+
+</html>

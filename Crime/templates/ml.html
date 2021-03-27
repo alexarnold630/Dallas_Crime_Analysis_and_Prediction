@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Machine Learning Model</title>
+
+    <!-- Bootstrap and Bootswatch CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
+    
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script> -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://unpkg.com/d3-v6-tip@1.0.6/build/d3-v6-tip.js"></script>
+    <script src="https://unpkg.com/jeezy@1.13.1/lib/jeezy.min.js"></script>
+    <script type="text/javascript" src="/static/js/logic.js"></script>
+    <script type="text/javascript" src="/static/js/app4.js"></script>
+
+    <!-- JS -->
+    <script type="text/javascript" src="https://public.tableau.com/javascripts/api/tableau-2.js"></script>
+
+    
+
+
+
+</head>
+
+<body>
+
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">
+            <img src="../static/images/dallas_logo.jpeg" alt="logo" style="width:40px;height:40px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Visualizations</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/ml">Status Predictor</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/exploration">Crime Analysis</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/data">Data</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/resources">Resources</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="row text-center">
+        <div class = "col-md-12">
+            <h6 class="display-4">Dallas Crime Predictor</h6>
+        </div>
+    </div>
+
+    <div class= "container-fluid">
+        <div class="row text-center" style="margin-top:3%">
+            <div class = "col-md-12">
+                <h4>Use the filters below to see predict whether a crime incident will result
+                    in an <b>Arrest</b>, the incident being <b>Closed</b>, or the incident being <b>Suspended</b>.
+                </h4>
+            </div>
+        </div>
+        <div class="row" >
+            <div class = "col-md-4">
+                <!--FILTERS-->
+                <div class="card text-white bg-primary mb-3">
+                    <h4 class="card-header">Incident Prediction Filters</h4>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="nibrs_crime_category">Crime Category</label>
+                                    <select id="crime_category">
+                                        <option value="ALL OTHER OFFENSES">All Other Offenses</option>
+                                        <option value="ASSAULT OFFENSES">Assault Offenses</option>
+                                        <option value="BURGLARY/ BREAKING & ENTERING">Burglary/ Breaking & Entering</option>
+                                        <option value="DESTRUCTION/ DAMAGE/ VANDALISM OF PROPERTY">Dustruction/ Damage/ Vandalism of Property</option>
+                                        <option value="DRUG/ NARCOTIC VIOLATIONS">Drug/ Narcotic Violations</option>
+                                        <option value="LARCENY/ THEFT OFFENSES">Larceny/ Theft Offenses</option>
+                                        <option value="MISCELLANEOUS">Miscellaneous</option>
+                                        <option value="MOTOR VEHICLE THEFT">Motor Vehicle Theft</option>
+                                        <option value="PUBLIC INTOXICATION">Public Intoxication</option>
+                                        <option value="ROBBERY">Robbery</option>
+                                        <option value="TRAFFIC VIOLATION - HAZARDOUS">Traffic Violation- Hazardous</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="division">Division</label>
+                                    <select id="division">
+                                        <option value="Central">Central</option>
+                                        <option value="NorthCentral">North Central</option>
+                                        <option value="SouthCentral">South Central</option>
+                                        <option value="NorthEast">North East</option>
+                                        <option value="NorthWest">North West</option>
+                                        <option value="SouthEast">South East</option>
+                                        <option value="SouthWest">South West</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="day1">Day</label>
+                                    <select id="day">
+                                        <option value="Mon">Monday</option>
+                                        <option value="Tue">Tuesday</option>
+                                        <option value="Wed">Wednesday</option>
+                                        <option value="Thu">Thursday</option>
+                                        <option value="Fri">Friday</option>
+                                        <option value="Sat">Saturday</option>
+                                        <option value="Sun">Sunday</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="hour">Hour</label>
+                                    <select id="hour">
+                                        <option value="1">1 am</option>
+                                        <option value="2">2 am</option>
+                                        <option value="3">3 am</option>
+                                        <option value="4">4 am</option>
+                                        <option value="5">5 am</option>
+                                        <option value="6">6 am</option>
+                                        <option value="7">7 am</option>
+                                        <option value="8">8 am</option>
+                                        <option value="9">9 am</option>
+                                        <option value="10">10 am</option>
+                                        <option value="11">11 am</option>
+                                        <option value="12">Noon</option>
+                                        <option value="13">1 pm</option>
+                                        <option value="14">2 pm</option>
+                                        <option value="15">3 pm</option>
+                                        <option value="16">4 pm</option>
+                                        <option value="17">5 pm</option>
+                                        <option value="18">6 pm</option>
+                                        <option value="19">7 pm</option>
+                                        <option value="20">8 pm</option>
+                                        <option value="21">9 pm</option>
+                                        <option value="22">10 pm</option>
+                                        <option value="23">11 pm</option>
+                                        <option value="24">Midnight</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="district">District</label>
+                                    <select id="district">
+                                        <option value="D1">D1</option>
+                                        <option value="D2">D2</option>
+                                        <option value="D3">D3</option>
+                                        <option value="D4">D4</option>
+                                        <option value="D5">D5</option>
+                                        <option value="D6">D6</option>
+                                        <option value="D7">D7</option>
+                                        <option value="D8">D8</option>
+                                        <option value="D9">D9</option>
+                                        <option value="D10">D10</option>
+                                        <option value="D11">D11</option>
+                                        <option value="D12">D12</option>
+                                        <option value="D13">D13</option>
+                                        <option value="D14">D14</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="watch">Watch</label>
+                                    <select id="watch">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="button" class="btn btn-secondary" id="filter">Make Prediction!</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--FEATURE IMPORTANCES-->
+            <div class = "col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Feature Importances</h4>
+                        <h6 class="card-subtitle mb-2">Model 1</h6>
+                        <img src="static/images/feature_importances1.png" alt="logo" style="height:225px">
+                        <br>
+                        <h6 class="card-subtitle mb-2">Model 2</h6>
+                        <img src="static/images/feature_importances2.png" alt="logo" style="height:225px">
+                    </div>
+                </div>
+            </div>
+            <div class = "col-md-4">
+                <!--GLOSSARY-->
+                <div class="card">
+                    <div class="card-body">
+                    <h4 class="card-title">Filter Glossary</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">Crime Category</h6>
+                    <p class="card-text">NIBRS Crime Category. Click <a href="https://www.denvergov.org/media/gis/DataCatalog/crime/pdf/NIBRS_Crime_Types.pdf">here</a> for detailed Crime Category descriptions.</p>
+                    <h6 class="card-subtitle mb-2 text-muted">Division</h6>
+                    <p class="card-text">Geographic area comprised of census blocks where incident occurred (smallest police geography).</p>
+                    <h6 class="card-subtitle mb-2 text-muted">District</h6>
+                    <p class="card-text">Geographic area comprised of city council districts where incident occurred.</p>
+                    <h6 class="card-subtitle mb-2 text-muted">Day</h6>
+                    <p class="card-text">Day of the week of which the incident occurred.</p>
+                    <h6 class="card-subtitle mb-2 text-muted">Hour</h6>
+                    <p class="card-text">The hour of the occurrence of the incident</p>
+                    <h6 class="card-subtitle mb-2 text-muted">Watch</h6>
+                    <p class="card-text">Refers to the officer shift.  <b>Watch 1:</b> 12pm-8am. (Late Night)  <b>Watch 2:</b> 8am-4pm. (Days)  <b>Watch 3:</b> 4pm-12am. (Evenings)</p>
+                    <!--<a href="#" class="card-link">Another link</a>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr style="color:lightgray; border-width: 3px;">
+    
+
+    <div id="myModal" class="modal">
+        <div class="modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title"><b>Our Predictions</b></h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12 ms-auto">
+                                <h1 id="output"></h1>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div id="myDiv"></div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div id="myDiv2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

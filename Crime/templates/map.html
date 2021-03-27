@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Crime Visualization Dashboard for 2020</title>
+
+    <!-- Bootstrap and Bootswatch CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
+   <!-- <link rel="stylesheet"  href="style.css">-->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script> -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://unpkg.com/d3-v6-tip@1.0.6/build/d3-v6-tip.js"></script>
+    <script src="https://unpkg.com/jeezy@1.13.1/lib/jeezy.min.js"></script>
+    <script type="text/javascript" src="/static/js/app2.js"></script>
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://public.tableau.com/javascripts/api/tableau-2.js"></script>
+</head>
+
+<body>
+
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">
+            <img src="../static/images/dallas_logo.jpeg" alt="logo" style="width:40px;height:40px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Visualizations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/ml">Status Predictor</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/exploration">Crime Analysis</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/data">Data</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/resources">Resources</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+
+     <!--JUMBOTRON-->
+    <!--<div class="jumbotron text-center">
+        <h3 class="display-3">Dallas Crime Visualization Dashboard</h3>
+        <a class="btn btn-success btn-md" href="dashboard.html" role="button">Time</a>
+        <a class="btn btn-success btn-md" href="map.html" role="button">Location</a>
+    </div>-->
+
+    <div class="row text-center">
+        <div class = "col-md-12">
+            <h6 class="display-4">Dallas Crime Visualization Dashboard for 2020</h6>
+            <a class="btn btn-success btn-md" href="/dashboard" role="button">Time of Incidents</a>
+            <a class="btn btn-success btn-md" href="/dashboardmap" role="button">Location of Incidents</a>
+        </div>
+    </div>
+
+    <!-- The div where we will inject our Tableau -->
+    <div id="tableauParent" class="container-fluid">
+        <div style="height:700px" id="tableauViz"></div>
+    </div>
+    <div class="card container-fluid" style="margin-top:25px; margin-bottom: 25px; text-align: right;">
+        <div style="display: inline-block;">
+            <button type="button" class="btn btn-primary" id="pdf">PDF</button>
+            <button type="button" class="btn btn-primary" id="image">Image</button>
+            <button type="button" class="btn btn-primary" id="crosstab">Crosstab</button>
+            <button type="button" class="btn btn-primary" id="data">Data</button>
+            <button type="button" class="btn btn-danger" id="revert">Revert</button>
+        </div>
+    </div>
+    
+
+
+</body>
+
+</html>
