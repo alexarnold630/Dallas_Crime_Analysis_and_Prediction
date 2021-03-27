@@ -5,6 +5,8 @@ import numpy as np
 import os
 from modelHelper import ModelHelper
 
+# COMMENTS TO TEST
+
 #init app and class
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
