@@ -3,7 +3,7 @@
 ## https://dallas-crime-smu.herokuapp.com/
 
 ## Background
-“Half the crime in the city [Boston] came from 3.6 percent of the city’s blocks…And every place they looked, they saw the same thing: Crime in every city was concentrated in a tiny number of street segments. Weisburd refers to this as  the Law of Crime Concentration.  Crime is tied to very specific places and contexts.” 
+“Half the crime in the city [Boston] came from 3.6 percent of the city’s blocks…And every place they looked, they saw the same thing: Crime in every city was concentrated in a tiny number of street segments. Weisburd refers to this as  the Law of Crime Concentration.  Crime is tied to very specific places and contexts.” -Maclolm Gladwell, _Talking to Strangers: What We Should Know about the People We Don't Know_
 
 So what are these places and contexts that crime is tied to?  In this report, we investigate crime in Dallas for the year 2020 by uncovering trends through visual analysis and creating a machine learning model to predict the status of crime incidents.  We’ll go on to explain:
 - The Dallas crime data we explored.
@@ -23,8 +23,8 @@ We developed two dashboards based on time and location to further investigate Da
 
 These maps are also filtered by Crime Category and Month.  There is a high crime density in the Central and Southern Area of Dallas, but for the month of February it has the lowest density of overall crime for the city. When filtering by crime, Assault, Larceny/Theft, and Miscellaneous crimes have the greatest density across the city.
 
-![time_dashboard](/static/images/time_dashboard.png)
-![location_dashboard](/static/images/location_dashboard.png)
+![time](/static/images/time_dashboard.png)
+![location](/static/images/location_dashboard.png)
 
 ### Machine Learning Model
 Based on our visualization analysis, we were interested to see whether we could predict the status of a crime incident based on it’s time and location data.  We created a two-step machine learning model using the XG-Boost Classifier that allows us to predict the probability that a reported criminal incident will result in either an arrest, clearance, or suspension.
