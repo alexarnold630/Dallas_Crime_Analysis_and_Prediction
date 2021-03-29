@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Machine Learning Model</title>
+    <title>Crime Predictor</title>
 
     <!-- Bootstrap and Bootswatch CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -15,19 +15,13 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js"></script>
     
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script> -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://unpkg.com/d3-v6-tip@1.0.6/build/d3-v6-tip.js"></script>
     <script src="https://unpkg.com/jeezy@1.13.1/lib/jeezy.min.js"></script>
     <script type="text/javascript" src="/static/js/logic.js"></script>
-    <script type="text/javascript" src="/static/js/app4.js"></script>
 
     <!-- JS -->
     <script type="text/javascript" src="https://public.tableau.com/javascripts/api/tableau-2.js"></script>
-
-    
-
-
 
 </head>
 
@@ -69,14 +63,14 @@
         </div>
     </nav>
 
-    <div class="row text-center">
+    <div class="row text-center" style="margin-top:3%">
         <div class = "col-md-12">
-            <h6 class="display-4">Dallas Crime Predictor</h6>
+            <h6 class="display-4">Dallas Crime Incident Predictor</h6>
         </div>
     </div>
 
     <div class= "container-fluid">
-        <div class="row text-center" style="margin-top:3%">
+        <div class="row text-center" style="margin-top:2%">
             <div class = "col-md-12">
                 <h4>Use the filters below to see predict whether a crime incident will result
                     in an <b>Arrest</b>, the incident being <b>Closed</b>, or the incident being <b>Suspended</b>.
@@ -227,6 +221,7 @@
                         <br>
                         <h6 class="card-subtitle mb-2">Model 2</h6>
                         <img src="static/images/feature_importances2.png" alt="logo" style="height:225px">
+                        <p class="text-center">Model 2 is heavily weighted by the Crime Category: Miscellaneous at approximately 78%. Therefore, we have excluded that category to show the other contributing factors and their weights respectively.</p>
                     </div>
                 </div>
             </div>
@@ -247,7 +242,6 @@
                     <p class="card-text">The hour of the occurrence of the incident</p>
                     <h6 class="card-subtitle mb-2 text-muted">Watch</h6>
                     <p class="card-text">Refers to the officer shift.  <b>Watch 1:</b> 12pm-8am. (Late Night)  <b>Watch 2:</b> 8am-4pm. (Days)  <b>Watch 3:</b> 4pm-12am. (Evenings)</p>
-                    <!--<a href="#" class="card-link">Another link</a>-->
                     </div>
                 </div>
             </div>
@@ -256,7 +250,7 @@
 
     <hr style="color:lightgray; border-width: 3px;">
     
-
+    <!--MODAL-->
     <div id="myModal" class="modal">
         <div class="modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -278,7 +272,9 @@
                                 <div id="myDiv"></div>
                             </div>
                             <div class="col-sm-6">
-                                <div id="myDiv2"></div>
+                                <div id="myDiv2" style="height:320px"></div>
+                                <p>Our two-step model identifies whether or not an incident ended in a Suspension in Model 1.  If the probabilitiy of Suspension is less than 50%, the incident is then run through Model 2 to determine the probability that an incident ending in Arrest or Clearance.
+                                </p>
                             </div>
                         </div>
                     </div>

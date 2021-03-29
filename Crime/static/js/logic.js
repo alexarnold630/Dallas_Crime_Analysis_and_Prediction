@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    console.log("Page Loaded");
+    //console.log("Page Loaded");
 
     $("#filter").click(function() {
         makePredictions();
@@ -37,7 +37,7 @@ function makePredictions() {
         data: JSON.stringify({ "data": payload }),
         success: function(returnedData) {
             // print it
-            console.log(returnedData);
+            //console.log(returnedData);
 
             if (returnedData["prediction"]["point"] == 0) {
                 $("#output").html("<h3>Most Likely Outcome is: <b>Arrest</b></h3>");
@@ -117,21 +117,21 @@ function makeTable(preds2_real) {
             align: "center",
             line: {width: 1, color: 'black'},
             fill: {color: "#0166ce"},
-            font: {family: 'Calibri', size: 18, color: "white"}
+            font: {family: 'Verdana', size: 14, color: "white"}
         },
         cells: {
             values: values,
             align: "center",
             height: 30,
             line: {color: "black", width: 1},
-            font: {family: 'Calibri', size: 18, color: ["black"]}
+            font: {family: 'Verdana', size: 14, color: ["black"]}
         }
     }];
 
     var layout = {
         font: {
-            size: 18,
-            family: "Calibri"
+            size: 14,
+            family: "Verdana"
         }
     };
 
