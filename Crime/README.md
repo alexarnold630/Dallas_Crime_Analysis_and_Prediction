@@ -23,9 +23,6 @@ We developed two dashboards based on time and location to further investigate Da
 
 These maps are also filtered by Crime Category and Month.  There is a high crime density in the Central and Southern Area of Dallas, but for the month of February it has the lowest density of overall crime for the city. When filtering by crime, Assault, Larceny/Theft, and Miscellaneous crimes have the greatest density across the city.
 
-![time](images/time_dashboard.png)
-![location](images/location_dashboard.png)
-
 ### Machine Learning Model
 Based on our visualization analysis, we were interested to see whether we could predict the status of a crime incident based on it’s time and location data.  We created a two-step machine learning model using the XG-Boost Classifier that allows us to predict the probability that a reported criminal incident will result in either an arrest, clearance, or suspension.
 
