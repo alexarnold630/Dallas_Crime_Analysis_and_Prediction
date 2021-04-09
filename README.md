@@ -2,6 +2,18 @@
 
 ## https://dallas-crime-smu.herokuapp.com/
 
+## Objective
+Create a full-stack application to analyze Dallas Crime for 2020 and predict crime incident status.
+
+## Technologies Used
+- Pandas
+- Matplotlib
+- Seaborn
+- HTML5/CSS
+- JavaScript
+- Tableau
+
+
 ## Background
 “Half the crime in the city [Boston] came from 3.6 percent of the city’s blocks…And every place they looked, they saw the same thing: Crime in every city was concentrated in a tiny number of street segments. Weisburd refers to this as  the Law of Crime Concentration.  Crime is tied to very specific places and contexts.” -Maclolm Gladwell, _Talking to Strangers: What We Should Know about the People We Don't Know_
 
@@ -16,15 +28,20 @@ So what are these places and contexts that crime is tied to?  In this report, we
 Crime and criminal activity are prevalent issues that exist in any city. Can we then organize our efforts and focus on certain parts of the city, like Gladwell posts in his book, to better counter crime and criminal activity?
 
 ## Data
-We used open-sourced Police Incident data from the city of Dallas for the entire year 2020.  This dataset provided the date and time, location information, demographic information, and type of incident in addition to much more detail within each of these categories.  We then cleaned the data by removing nulls, dropping columns, changing object types, and removing incidents due to human-error when entering in information to the dataset.
+We used open-sourced Police Incident data from the city of Dallas Open API for the entire year 2020.  This dataset provided the date and time, location information, demographic information, and type of incident in addition to much more detail within each of these categories.  We then cleaned the data by removing nulls, dropping columns, changing object types, and removing incidents due to human-error when entering in information to the dataset.
+https://www.dallasopendata.com/resource/qv6i-rri7.json
 
 ## Visualization Analysis
-We developed two dashboards based on time and location to further investigate Dallas Crime.  The “Time” Dashboard looks deeper into when crimes occur, what type of crime occurs, and who is involved in each crime incident.  Filtering by Crime Category and Month allowed us to determine that most crimes occur in the month of August and on Fridays.  The “Location” Dashboard discovers where crime occurs by analyzing crime incidents by division and density.  
+We developed two dashboards based on time and location to further investigate Dallas Crime.  The “Time” Dashboard looks deeper into when crimes occur, what type of crime occurs, and who is involved in each crime incident.  Filtering by Crime Category and Month allowed us to determine that most crimes occur in the month of August and on Fridays.  
+![Time](Crime/static/images/time_dashboard.png)
 
-These maps are also filtered by Crime Category and Month.  There is a high crime density in the Central and Southern Area of Dallas, but for the month of February it has the lowest density of overall crime for the city. When filtering by crime, Assault, Larceny/Theft, and Miscellaneous crimes have the greatest density across the city.
+The “Location” Dashboard discovers where crime occurs by analyzing crime incidents by division and density. These maps are also filtered by Crime Category and Month.  There is a high crime density in the Central and Southern Area of Dallas, but for the month of February it has the lowest density of overall crime for the city. When filtering by crime, Assault, Larceny/Theft, and Miscellaneous crimes have the greatest density across the city.
+![Location](Crime/static/images/location_dashboard.png)
 
 ### Machine Learning Model
 Based on our visualization analysis, we were interested to see whether we could predict the status of a crime incident based on it’s time and location data.  We created a two-step machine learning model using the XG-Boost Classifier that allows us to predict the probability that a reported criminal incident will result in either an arrest, clearance, or suspension.
+![Model-1](Crime/static/images/model_1.png)
+![Model-2](Crime/static/images/model_2.png)
 
 ## Conclusions
 We accepted our alternative hypothesis and determined that South Dallas experiences the most crime out of each division in our dataset. We also discovered that April had the lowest percentage of crime incidents out of every month in 2020. 
@@ -39,3 +56,8 @@ When dealing with live data we often have to deal with discrepancies in our data
 
 ## Future Work
 To further investigate the vast amount of crime data it would be vital to look into trends overtime. It would also be interesting to investigate other types of machine learning models using different targets such as crime category or watch. This would allow us to see what else we could potentially predict and compare the different scores between each model.
+
+### Contact:
+Alex Arnold: alexnarnold630@gmail.com <br>
+Samantha Lane <br>
+Rachel Podemski
