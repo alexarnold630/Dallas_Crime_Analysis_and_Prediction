@@ -39,7 +39,9 @@ The “Location” Dashboard discovers where crime occurs by analyzing crime inc
 
 ### Machine Learning Model
 Based on our visualization analysis, we were interested to see whether we could predict the status of a crime incident based on it’s time and location data.  We created a two-step machine learning model using the XG-Boost Classifier that allows us to predict the probability that a reported criminal incident will result in either an arrest, clearance, or suspension.
+#### Model 1
 ![Model-1](static/images/model_1.png)
+#### Model 2
 ![Model-2](static/images/model_2.png)
 
 ## Conclusions
